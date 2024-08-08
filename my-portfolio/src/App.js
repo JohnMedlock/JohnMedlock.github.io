@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.css';
-import Hero from './Hero';
+import Expertise from './components/Expertise';
+import Hero from './components/Hero';
 
 function App() {
   return (
     <div className="App">
       <Hero />
+      <Expertise />
     </div>
   );
 }
