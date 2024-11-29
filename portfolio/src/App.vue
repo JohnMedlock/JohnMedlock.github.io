@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <nav-bar />
+    <nav-bar :show-nav="showNav" />
     <main class="main-content">
-      <transition name="fade" mode="out-in">
-        <router-view />
-      </transition>
+      <hero-section />
+      <about-page />
+      <projects-page />
+      <contact-page />
     </main>
     <footer class="footer">
       <p>&copy; {{ currentYear }} John Medlock. All rights reserved.</p>
@@ -13,15 +14,41 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
-import router from './router';
+import AboutPage from './components/AboutPage.vue'
+import ContactPage from './components/ContactPage.vue'
+import HeroSection from './components/HeroSection.vue'
+import NavBar from './components/NavBar.vue'
+import ProjectsPage from './components/ProjectsPage.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    HeroSection,
+    AboutPage,
+    ProjectsPage,
+    ContactPage
   },
-  router,
+  data() {
+    return {
+      showNav: false
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      const aboutSection = document.getElementById('about')
+      if (aboutSection) {
+        const aboutPosition = aboutSection.offsetTop
+        this.showNav = window.scrollY >= aboutPosition - 100
+      }
+    }
+  },
   computed: {
     currentYear() {
       return new Date().getFullYear()
@@ -31,24 +58,8 @@ export default {
 </script>
 
 <style>
-:root {
-  --portal-orange: #ff6934;
-  --portal-blue: #00a3e1;
-  --text-color: #333;
-  --bg-color: #f5f5f5;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--text-color);
-  line-height: 1.6;
-  background: var(--bg-color);
+html {
+  scroll-behavior: smooth;
 }
 
 #app {
@@ -59,8 +70,6 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 0;
-  width: 100%;
 }
 
 .footer {
@@ -68,23 +77,54 @@ body {
   padding: 1rem;
   background: linear-gradient(135deg, var(--portal-orange) 0%, var(--portal-blue) 100%);
   color: white;
-  font-weight: 500;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
+/* Global styles and CSS variables */
+:root {
+  --portal-orange: #ff6934;
+  --portal-blue: #00a3e1;
+  --text-color: #333;
+  --bg-color: #f5f5f5;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background: var(--bg-color);
+}
+
+/* App-specific styles */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--portal-orange) 0%, var(--portal-blue) 100%);
+  color: white;
+}
+
+/* Scroll margin for sections */
+#hero, #about, #projects, #contact {
+  scroll-margin-top: 80px;
 }
 </style>

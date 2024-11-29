@@ -1,14 +1,26 @@
 <template>
-    <nav class="navbar">
-      <div class="nav-brand">JM</div>
-      <div class="nav-links">
-        <router-link to="/" exact>Home</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/projects">Projects</router-link>
-        <router-link to="/contact">Contact</router-link>
-      </div>
-    </nav>
-  </template>
+  <nav class="navbar" :class="{ 'navbar-visible': showNav }">
+    <div class="nav-brand">JM</div>
+    <div class="nav-links">
+      <a href="#hero" id="nav-home">Home</a>
+      <a href="#about" id="nav-about">About</a>
+      <a href="#projects" id="nav-projects">Projects</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </div>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'NavBar',
+  props: {
+    showNav: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
   
   <style scoped>
   :root {
@@ -23,6 +35,19 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-visible {
+    transform: translateY(0);
+    opacity: 1;
   }
   
   .nav-brand {
@@ -88,9 +113,3 @@
     }
   }
   </style>
-  
-  <script>
-  export default {
-    name: 'NavBar'
-  }
-  </script>

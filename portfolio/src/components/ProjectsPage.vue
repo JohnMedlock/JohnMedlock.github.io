@@ -1,11 +1,11 @@
 <template>
-    <div class="projects-section">
-      <h1>My Projects</h1>
-      <div class="projects-grid">
-        <div class="project-card" v-for="project in projects" :key="project.id">
-          <div class="project-content">
+  <div id="projects" class="projects-section">
+    <h1>My Projects</h1>
+    <div class="projects-grid">
+      <div class="project-card" v-for="project in projects" :key="project.id">
+        <div class="project-content">
+          <div class="project-header">
             <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
             <div class="project-links">
               <a :href="project.github" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i> GitHub
@@ -15,36 +15,110 @@
               </a>
             </div>
           </div>
+          <p class="project-description">{{ project.description }}</p>
+          <div class="features-list" v-if="project.features">
+            <span v-for="(feature, index) in project.features" :key="index" class="feature">
+              <i class="fas fa-check"></i> {{ feature }}
+            </span>
+          </div>
+          <div class="tech-stack">
+            <span v-for="(tech, index) in project.technologies" :key="index">{{ tech }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ProjectsPage', // Fixed naming convention
-    data() {
-      return {
-        projects: [
-          {
-            id: 1,
-            title: 'Project One',
-            description: 'Description of project one',
-            github: 'https://github.com/yourusername/project1',
-            demo: 'https://demo-link.com'
-          },
-          // Add more projects here
-        ]
-      }
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProjectsPage',
+  data() {
+    return {
+      projects: [
+        {
+          id: 1,
+          title: 'WikiType',
+          description: 'A dynamic web application that transforms Wikipedia articles into engaging typing exercises. Users can practice typing with any Wikipedia article while tracking their performance and customizing their experience.',
+          github: 'https://github.com/dylancrter/wikitype',
+          demo: 'https://wikitype.demo.com',
+          features: [
+            'Real-time typing metrics',
+            'Progress tracking',
+            'Theme customization',
+            'Wikipedia integration',
+            'Save and resume sessions'
+          ],
+          technologies: [
+            'React',
+            'TypeScript',
+            'Context API',
+            'SCSS',
+            'React Router'
+          ]
+        }
+      ]
     }
   }
-  </script>
-  
-  <style scoped>
-  .projects-section {
-    padding: 4rem 2rem;
-    background: linear-gradient(45deg, rgba(255, 105, 52, 0.1), rgba(0, 163, 225, 0.1));
-  }
+}
+</script>
+
+<style scoped>
+.projects-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(45deg, rgba(255, 105, 52, 0.1), rgba(0, 163, 225, 0.1));
+  min-height: 100vh;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--portal-blue);
+}
+
+.feature i {
+  color: var(--portal-orange);
+}
+
+.tech-stack {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tech-stack span {
+  background: linear-gradient(135deg, var(--portal-orange), var(--portal-blue));
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.tech-stack span:hover {
+  transform: translateY(-2px);
+}
   
   h1 {
     text-align: center;

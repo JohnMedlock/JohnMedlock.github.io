@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-section">
+    <div id="contact" class="contact-section">
       <h1>Get In Touch</h1>
       <div class="contact-container">
         <form class="contact-form" @submit.prevent="handleSubmit">
@@ -42,7 +42,14 @@
             ></textarea>
           </div>
   
-          <button type="submit" class="submit-btn">Send Message</button>
+          <p v-if="error" class="error-message">{{ error }}</p>
+          <button
+            type="submit"
+            class="submit-btn"
+            :disabled="loading"
+          >
+            {{ loading ? 'Sending...' : 'Send Message' }}
+          </button>
         </form>
   
         <div class="contact-info">
@@ -61,6 +68,8 @@
   </template>
   
   <script>
+  import emailjs from '@emailjs/browser';
+
   export default {
     name: 'ContactPage',
     data() {
@@ -70,13 +79,41 @@
           email: '',
           subject: '',
           message: ''
-        }
+        },
+        loading: false,
+        error: null
       }
     },
     methods: {
-      handleSubmit() {
-        // Implement form submission logic here
-        console.log('Form submitted:', this.form)
+      async handleSubmit() {
+        this.loading = true;
+        this.error = null;
+        
+        try {
+          await emailjs.send(
+            'YOUR_SERVICE_ID', // From EmailJS dashboard
+            'YOUR_TEMPLATE_ID', // From EmailJS dashboard
+            {
+              from_email: this.form.email,
+              to_email: 'jwmedlock@icloud.com',
+              subject: this.form.subject,
+              message: this.form.message,
+            },
+            'YOUR_PUBLIC_KEY' // From EmailJS dashboard
+          );
+          
+          // Clear form after successful send
+          this.form.email = '';
+          this.form.subject = '';
+          this.form.message = '';
+          
+          alert('Message sent successfully!');
+        } catch (error) {
+          this.error = 'Failed to send message. Please try again.';
+          console.error('Email error:', error);
+        } finally {
+          this.loading = false;
+        }
       }
     }
   }
@@ -185,5 +222,15 @@
     .contact-section {
       padding: 2rem 1rem;
     }
+  }
+
+  .error-message {
+    color: #dc3545;
+    margin-bottom: 1rem;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
   </style>
