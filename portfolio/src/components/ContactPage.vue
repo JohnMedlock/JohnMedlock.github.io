@@ -5,10 +5,10 @@
         <form class="contact-form" @submit.prevent="handleSubmit">
           <div class="form-group">
             <label for="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              v-model="form.email" 
+            <input
+              type="email"
+              id="email"
+              v-model="form.email"
               required
               :class="{ 'portal-glow': focused === 'email' }"
               @focus="focused = 'email'"
@@ -18,10 +18,10 @@
   
           <div class="form-group">
             <label for="subject">Subject</label>
-            <input 
-              type="text" 
-              id="subject" 
-              v-model="form.subject" 
+            <input
+              type="text"
+              id="subject"
+              v-model="form.subject"
               required
               :class="{ 'portal-glow': focused === 'subject' }"
               @focus="focused = 'subject'"
@@ -31,9 +31,9 @@
   
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea 
-              id="message" 
-              v-model="form.message" 
+            <textarea
+              id="message"
+              v-model="form.message"
               required
               rows="6"
               :class="{ 'portal-glow': focused === 'message' }"
@@ -41,14 +41,18 @@
               @blur="focused = null"
             ></textarea>
           </div>
-  
+
+          <div v-if="success" class="success-message">
+            Message sent successfully! I'll get back to you soon.
+          </div>
           <p v-if="error" class="error-message">{{ error }}</p>
           <button
             type="submit"
             class="submit-btn"
             :disabled="loading"
           >
-            {{ loading ? 'Sending...' : 'Send Message' }}
+            <span v-if="loading" class="loader"></span>
+            <span v-else>Send Message</span>
           </button>
         </form>
   
@@ -69,9 +73,33 @@
   
   <script>
   import emailjs from '@emailjs/browser';
-
+  
   export default {
     name: 'ContactPage',
+    created() {
+      // Check for required environment variables
+      const requiredVars = [
+        'VUE_APP_EMAILJS_PUBLIC_KEY',
+        'VUE_APP_EMAILJS_SERVICE_ID',
+        'VUE_APP_EMAILJS_TEMPLATE_ID',
+        'VUE_APP_RECIPIENT_EMAIL'
+      ];
+  
+      const missingVars = requiredVars.filter(varName => !process.env[varName]);
+      if (missingVars.length > 0) {
+        console.error('Missing required environment variables:', missingVars);
+        this.error = 'Contact form configuration error. Please try again later.';
+        return;
+      }
+  
+      // Initialize EmailJS
+      try {
+        emailjs.init(process.env.VUE_APP_EMAILJS_PUBLIC_KEY);
+      } catch (error) {
+        console.error('EmailJS initialization error:', error);
+        this.error = 'Failed to initialize contact form. Please try again later.';
+      }
+    },
     data() {
       return {
         focused: null,
@@ -81,36 +109,43 @@
           message: ''
         },
         loading: false,
-        error: null
+        error: null,
+        success: false
       }
     },
     methods: {
       async handleSubmit() {
+        if (this.error) {
+          return; // Don't proceed if there are configuration errors
+        }
+  
         this.loading = true;
         this.error = null;
+        this.success = false;
         
         try {
-          await emailjs.send(
-            'YOUR_SERVICE_ID', // From EmailJS dashboard
-            'YOUR_TEMPLATE_ID', // From EmailJS dashboard
+          const response = await emailjs.send(
+            process.env.VUE_APP_EMAILJS_SERVICE_ID,
+            process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
             {
               from_email: this.form.email,
-              to_email: 'jwmedlock@icloud.com',
+              to_email: process.env.VUE_APP_RECIPIENT_EMAIL,
               subject: this.form.subject,
               message: this.form.message,
-            },
-            'YOUR_PUBLIC_KEY' // From EmailJS dashboard
+            }
           );
-          
-          // Clear form after successful send
-          this.form.email = '';
-          this.form.subject = '';
-          this.form.message = '';
-          
-          alert('Message sent successfully!');
+  
+          if (response.status === 200) {
+            this.form.email = '';
+            this.form.subject = '';
+            this.form.message = '';
+            this.success = true;
+          } else {
+            throw new Error('Failed to send email');
+          }
         } catch (error) {
-          this.error = 'Failed to send message. Please try again.';
           console.error('Email error:', error);
+          this.error = 'Failed to send message. Please try again.';
         } finally {
           this.loading = false;
         }
@@ -233,4 +268,5 @@
     opacity: 0.7;
     cursor: not-allowed;
   }
+  
   </style>
