@@ -12,6 +12,9 @@ body {
     color: #000;
     background-color: #008080;
     cursor: default;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 nav, footer, section {
@@ -89,7 +92,7 @@ footer {
     align-items: center;
     gap: 1rem;
     padding: 8px;
-    margin-top: 8px;
+    margin-top: auto;
 }
 
 /* Windows 95 Button Style */
@@ -278,8 +281,9 @@ h2, .profile-header, .card-title-bar {
 
 /* Contact Form */
 .one-col {
+    flex: 1;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 2rem auto;
     background: #c0c0c0;
     padding: 16px;
     border: 2px solid;
