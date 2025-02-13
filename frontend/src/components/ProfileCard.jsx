@@ -5,7 +5,7 @@ const ProfileCard = () => {
     return (
         <div className="profile-card">
             <div className="profile-header">
-                <img src="../../public/images/headshot1.jpeg" alt="Headshot of John Medlock" className="buddy-icon" />
+                <img src="../../public/images/HeadShot1.jpg" alt="Headshot of John Medlock" className="buddy-icon" />
                 <div>
                     <h1 className="screen-name">John Medlock</h1>
                     <div>Status: Online</div>

@@ -1,19 +1,51 @@
 .profile-info {
-    background-color: #c0c0c0; /* Windows 98 background color */
-    border: 2px solid;
-    border-top-color: #ffffff; /* Top border color */
-    border-left-color: #ffffff; /* Left border color */
-    border-right-color: #404040; /* Right border color */
-    border-bottom-color: #404040; /* Bottom border color */
-    padding: 20px;
-    box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080; /* Windows 98 shadow */
-    font-family: 'MS Sans Serif', 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    background-color: #000080;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    padding: 15px;
+    margin: 10px;
+    border: 2px outset #1084d0;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #000080, #0000cd);
 }
 
 .profile-info p {
     margin: 8px 0;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 14px;
+    text-shadow: 1px 1px #000000;
+}
+
+.profile-info a {
+    color: #ffff00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-info a:hover {
+    color: #00ffff;
+    text-decoration: underline;
+}
+
+.profile-info h2 {
+    color: #00ffff;
+    font-size: 18px;
+    border-bottom: 1px solid #4169e1;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-info ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.profile-info ul li::before {
+    content: ">";
+    color: #00ffff;
+    font-weight: bold;
+    margin-right: 8px;
 }

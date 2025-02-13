@@ -86,6 +86,15 @@ dd {
     box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
 }
 
+.project-card iframe {
+    width: 100%; /* Make the iframe take up 100% of the project card's width */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 16 / 9; /* Standard video aspect ratio */
+    border: 2px solid #404040;
+    box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+    margin-bottom: 12px;
+}
+
 .win95-button {
     background-color: #c0c0c0;
     border: 2px solid;
@@ -136,3 +145,18 @@ dd {
         padding: 0 16px;
     }
 }
+
+.video-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .play-button {
+    position: absolute;
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    cursor: pointer;
+  }
