@@ -4,10 +4,32 @@ import './ProfileInfo.css';
 const ProfileInfo = () => {
     return (
         <div className="profile-info">
-            <p>Location: Alpharetta, GA 30004</p>
-            <p>Email: jwmedlock@icloud.com</p>
-            <p>Phone: (770) 883-8690</p>
-            <p>Eager Frontend Developer with hands-on experience with frontend frameworks and backend logic. Strong background in Frontend design and User Experience. Skilled in team management and project progression with demonstrated success. Passionate about innovative user experiences and a dedicated musician.</p>
+            <h2>Profile Information</h2>
+            <ul>
+                <li>
+                    <strong>Location:</strong> Alpharetta, GA 30004, US
+                </li>
+                <li>
+                    <strong>Email:</strong> 
+                    <a href="mailto:jwmedlock@icloud.com">jwmedlock@icloud.com</a>
+                </li>
+                <li>
+                    <strong>Phone:</strong> 
+                    <a href="tel:+17708838690">(770) 883-8690</a>
+                </li>
+            </ul>
+            
+            <h2>About Me</h2>
+            <p>
+                Eager Frontend Developer with hands-on experience with frontend frameworks and backend logic. Strong background in Frontend design and User Experience. Skilled in team management and project progression with demonstrated success. Passionate about innovative user experiences and a dedicated musician.
+            </p>
+            <h2>Interests</h2>
+            <ul>
+                <li>Innovative User Experiences</li>
+                <li>Web Application Architecture</li>
+                <li>Music Production</li>
+                <li>Digital Design</li>
+            </ul>
         </div>
     );
 };
