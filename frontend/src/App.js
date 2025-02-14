@@ -34,7 +34,7 @@ function App() {
       videoUrl: 'https://www.youtube.com/embed/uC2L6qnkAE4?autoplay=1',
       description:
         'Financial Friend is a financial advisment application designed to empower users with personalized, AI-driven insights and interactive tools to achieve their financial goals. By combining a customizable 3D AI advisor, and analytic dashboards, the application provides an engaging and accessible platform for users to help make informed decisions. The application leverages a modern tech stack, including React, Three.js, Node.js, and MongoDB, along with AI/ML technologies like the OpenAI API and Meshy, to deliver a secure and user-friendly experience that makes financial planning more approachable and effective. This was also created for a hackathon.',
-      githubUrl: 'https://github.com/JohnMedlock/Portfolio',
+      githubUrl: 'https://github.com/JohnMedlock/Finance-Friend',
     },
   ];
 
