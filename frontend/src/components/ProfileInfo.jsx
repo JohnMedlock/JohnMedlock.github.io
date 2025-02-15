@@ -10,18 +10,18 @@ const ProfileInfo = () => {
                     <strong>Location:</strong> Alpharetta, GA 30004, US
                 </li>
                 <li>
-                    <strong>Email:</strong> 
-                    <a href="mailto:jwmedlock@icloud.com">jwmedlock@icloud.com</a>
+                    <strong>Email: </strong>
+                    <a href="mailto:jwmedlock@icloud.com"> jwmedlock@icloud.com</a>
                 </li>
                 <li>
-                    <strong>Phone:</strong> 
-                    <a href="tel:+17708838690">(770) 883-8690</a>
+                    <strong>Phone: </strong>
+                    <a href="tel:+17708838690"> (770) 883-8690</a>
                 </li>
             </ul>
             
             <h2>About Me</h2>
             <p>
-                Eager Frontend Developer with hands-on experience with frontend frameworks and backend logic. Strong background in Frontend design and User Experience. Skilled in team management and project progression with demonstrated success. Passionate about innovative user experiences and a dedicated musician.
+                Eager front-end developer with hands-on experience using frontend frameworks and backend logic. Strong background in frontend design and user experience. Skilled in team management and project progression with demonstrated success. Dedicated musician and passionate about innovative user experiences.
             </p>
             <h2>Interests</h2>
             <ul>

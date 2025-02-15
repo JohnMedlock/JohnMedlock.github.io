@@ -17,7 +17,7 @@ function App() {
       imageUrl: '/images/wikitype-demo.jpg',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
       description:
-        'Wiki tape is a Web App that allows you to type out. Wikipedia articles in the context of a typing game. You can upload the URL of any Wikipedia page you want to type out and it will be added to your dashboard and then you can test out your typing skills. It tracks metrics such as words, per minute the progress through the whole file and many more. For the moment, a surprise video will be playing, but soon we will have a demo ready to be displayed.',
+        'WikiType is a Web App that allows you to type out Wikipedia articles in the context of a typing game. You can upload the URL of any Wikipedia page you want to type out and it will be added to your dashboard and then you can test out your typing skills. It tracks metrics such as words per minute, progress through the article, and many more. For the moment, a surprise video will be playing, but soon we will have a demo ready to be displayed.',
       githubUrl: 'https://github.com/dylanwcarter/wikitype',
     },
     {
@@ -33,7 +33,7 @@ function App() {
       imageUrl: '/images/FinanceFriend.jpg',
       videoUrl: 'https://www.youtube.com/embed/uC2L6qnkAE4?autoplay=1',
       description:
-        'Financial Friend is a financial advisment application designed to empower users with personalized, AI-driven insights and interactive tools to achieve their financial goals. By combining a customizable 3D AI advisor, and analytic dashboards, the application provides an engaging and accessible platform for users to help make informed decisions. The application leverages a modern tech stack, including React, Three.js, Node.js, and MongoDB, along with AI/ML technologies like the OpenAI API and Meshy, to deliver a secure and user-friendly experience that makes financial planning more approachable and effective. This was also created for a hackathon.',
+        'Financial Friend is a financial advisement application designed to empower users with personalized, AI-driven insights and interactive tools to achieve their financial goals. By combining a customizable 3D AI advisor, and analytic dashboards, the application provides an engaging and accessible platform for users to help make informed decisions. The application leverages a modern tech stack, including React, Three.js, Node.js, and MongoDB, along with AI/ML technologies like the OpenAI API and Meshy, to deliver a secure and user-friendly experience that makes financial planning more approachable and effective. This was also created for a hackathon.',
       githubUrl: 'https://github.com/JohnMedlock/Finance-Friend',
     },
   ];
